@@ -4,6 +4,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.layout.HBox;
+import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import core.User;
 
@@ -22,8 +26,8 @@ public class Login {
         loginBtn.setStyle("-fx-text-fill: #E0CEEB;"+"-fx-background-color: #156124;"+"-fx-font-weight: bold;");
         registerBtn.setStyle("-fx-text-fill: #E0CEEB;"+"-fx-background-color: #156124;"+"-fx-font-weight: bold;");
         
-        loginBtn.setPrefWidth(200);
-        registerBtn.setPrefWidth(200);
+        loginBtn.setPrefWidth(220);
+        registerBtn.setPrefWidth(220);
 
         Label msg = new Label();
 
@@ -46,12 +50,26 @@ public class Login {
         
         uname.setStyle("-fx-text-fill: #156124;"+"-fx-font-weight: bold;"+"-fx-font-size: 18px;");
         pword.setStyle("-fx-text-fill: #156124;"+"-fx-font-weight: bold;"+"-fx-font-size: 18px;");
-        
-        VBox vroot = new VBox(10, uname, username, pword, password, loginBtn, registerBtn, msg);
-        vroot.setStyle("-fx-background-color: #D8A6F7");
 
-        stage.setScene(new Scene(vroot, 300, 250));
-        stage.setTitle("Music Streaming App - Login");
+        VBox bBox = new VBox(10, loginBtn, registerBtn);
+        bBox.setAlignment(Pos.CENTER);
+
+        Image image = new Image("file:src/images/MusicApp.png");
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(110);
+        imageView.setFitHeight(110);
+        imageView.setPreserveRatio(true);
+
+        HBox actionBox = new HBox(20, bBox, imageView);
+        actionBox.setAlignment(Pos.CENTER);
+
+        VBox vroot1 = new VBox(10, uname, username, pword, password, actionBox, msg);
+                
+        vroot1.setStyle("-fx-background-color: #D8A6F7");
+
+        Scene scene = new Scene(vroot1, 370, 300);
+        stage.setScene(scene);
+        stage.setTitle("Music Streaming App");
         stage.show();
     }
 }
