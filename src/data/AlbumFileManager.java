@@ -1,11 +1,11 @@
 package data;
-
 import core.Album;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 // Handles file input/output for Album objects.
+
 public class AlbumFileManager {
 	private static final String ALBUM_FILE = "albums.dat";
 
@@ -35,3 +35,13 @@ public class AlbumFileManager {
         return new ArrayList<>();
     }
 }
+
+
+
+
+
+
+
+
+
+

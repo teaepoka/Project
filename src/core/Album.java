@@ -1,12 +1,11 @@
 package core;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 // This class represents an Album in the music streaming system.
 // An album belongs to an artist and contains multiple songs.
-public class Album implements Serializable {
+public class Album implements Serializable  {
 	private static final long serialVersionUID = 1L;
 
     private String title;
@@ -43,4 +42,6 @@ public class Album implements Serializable {
     public String toString() {
         return title + " by " + artistUsername + " (" + songs.size() + " songs)";
     }
+	
 }
+
