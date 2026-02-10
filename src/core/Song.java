@@ -12,7 +12,6 @@ public class Song implements Serializable {
 	    private String artistUsername;
 	    private String genre;
 	    private int duration; // in seconds
-	    private int playCount;
 
 	    // Constructor
 	    public Song(String title, String artistUsername, String genre, int duration) {
@@ -20,12 +19,10 @@ public class Song implements Serializable {
 	        this.artistUsername = artistUsername;
 	        this.genre = genre;
 	        this.duration = duration;
-	        this.playCount = 0;
 	    }
 
 	    // Called when a listener plays a song
 	    public void play() {
-	        playCount++;
 	        System.out.println("Playing song: " + title + " by " + artistUsername);
 	    }
 
@@ -46,10 +43,6 @@ public class Song implements Serializable {
 	        return duration;
 	    }
 
-	    public int getPlayCount() {
-	        return playCount;
-	    }
-
 	    // Setters
 	    public void setTitle(String title) {
 	        this.title = title;
@@ -65,7 +58,7 @@ public class Song implements Serializable {
 
 	    @Override
 	    public String toString() {
-	        return title + " - " + artistUsername + " (" + genre + ") | Plays: " + playCount;
+	        return title + " - " + artistUsername + " (" + genre ;
 	    }
 }
 
