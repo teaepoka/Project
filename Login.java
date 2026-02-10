@@ -30,6 +30,7 @@ public class Login {
         registerBtn.setPrefWidth(220);
 
         Label msg = new Label();
+        msg.setStyle("-fx-text-fill: #D10700;"+"-fx-font-weight: bold;"+"-fx-font-size: 15px;");
 
         loginBtn.setOnAction(e -> {
         	User user = FileRegistration.userService.login(
@@ -69,7 +70,7 @@ public class Login {
 
         Scene scene = new Scene(vroot1, 370, 300);
         stage.setScene(scene);
-        stage.setTitle("Music Streaming App");
+        stage.setTitle("Music Streaming App: Echo Flow");
         stage.show();
     }
 }
