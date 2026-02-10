@@ -17,7 +17,7 @@ public abstract class User implements Serializable{
         this.username = username;
         this.password = password;
         this.fullName = fullName;
-        this.email = email;
+        setEmail(email);
     }
 
     //Abstract methods to be implemented by subclasses
@@ -29,14 +29,6 @@ public abstract class User implements Serializable{
         System.out.println("Username: " + username);
         System.out.println("Full Name: " + fullName);
         System.out.println("Email: " + email);
-    }
-
-    //Allows users to update their profile details.
-    public void editProfile(String fullName, String email, String password) {
-        this.fullName = fullName;
-        this.email = email;
-        this.password = password;
-        System.out.println("Profile updated successfully.");
     }
 
     
@@ -71,6 +63,11 @@ public abstract class User implements Serializable{
     }
 
     public void setEmail(String email) {
+        if (email == null || !email.endsWith("@gmail.com")) {
+            throw new IllegalArgumentException(
+                "Email must end with @gmail.com"
+            );
+        }
         this.email = email;
     }
 
