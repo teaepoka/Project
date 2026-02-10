@@ -36,12 +36,14 @@ public class Playlist implements Serializable{
 	        }
 	    }
 
-	    // Display all songs in the playlist
-	    public void viewPlaylist() {
-	        System.out.println("Playlist: " + name);
+	    //Display all songs in the playlist
+	    public String viewPlaylist() {
+	        StringBuilder sb = new StringBuilder();
+	        sb.append("Playlist: ").append(name).append("\n");
 	        for (Song s : songs) {
-	            System.out.println("- " + s);
+	            sb.append("- ").append(s).append("\n");
 	        }
+	        return sb.toString();
 	    }
 
 	    // Getters
