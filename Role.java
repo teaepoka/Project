@@ -30,12 +30,16 @@ public class Role {
     	    songField.setPromptText("Enter song title");
     	    Button play = new Button("Play Song");
     	    
+    	    Label mesg = new Label();
+            mesg.setStyle("-fx-text-fill: #D10700;"+"-fx-font-weight: bold;"+"-fx-font-size: 15px;");
+    	    
     	    play.setStyle("-fx-text-fill: #F5534B;"+"-fx-background-color: #F7EC74;"+"-fx-font-weight: bold;");
     	    play.setOnAction(e -> {
     	    String name = songField.getText();
     	    Song song = listener.findSongByTitle(name); 
             if (song != null) {
         	    listener.listenToSong(songField.getText());
+        	    mesg.setText(user.getUsername()+" is listening to "+name);
             } else {
                 System.out.println("Song not found");
             }
@@ -60,14 +64,15 @@ public class Role {
 
     	    Button viewPlaylistBtn = new Button("View Playlist");
     	    viewPlaylistBtn.setStyle("-fx-text-fill: #F5534B;"+"-fx-background-color: #F7EC74;"+"-fx-font-weight: bold;");
-
+    	    
+    	    
     	    createPlaylistBtn.setOnAction(e -> {
     	        String name = newPlaylistField.getText();
     	        if (!name.isEmpty()) {
     	            Playlist playlist = new Playlist(name, listener.getUsername());
     	            listener.addPlaylist(playlist); 
     	            playlistCombo.getItems().add(playlist);
-    	            System.out.println("Playlist created: " + name);
+    	            mesg.setText("Playlist created: " + name);
     	        }
     	    });
 
@@ -78,8 +83,9 @@ public class Role {
     	            Song song = listener.findSongByTitle(songTitle); 
     	            if (song != null) {
     	                selected.addSong(song);
+    	                mesg.setText(songTitle + " added to "+selected);
     	            } else {
-    	                System.out.println("Song not found");
+    	                mesg.setText("Song not found");
     	            }
     	        }
     	    });
@@ -87,12 +93,12 @@ public class Role {
     	    viewPlaylistBtn.setOnAction(e -> {
     	        Playlist selected = playlistCombo.getValue();
     	        if (selected != null) {
-    	            selected.viewPlaylist();
+    	            mesg.setText(selected.viewPlaylist());
     	        }
     	    });
 
     	    root.getChildren().addAll(songField, play, playlistLabel, newPlaylistField, createPlaylistBtn,
-    	                              playlistCombo, addSongField, addSongBtn, viewPlaylistBtn);
+    	                              playlistCombo, addSongField, addSongBtn, viewPlaylistBtn, mesg);
     	}
         
     	List<Album> allAlbums = new ArrayList<>();
@@ -121,6 +127,9 @@ public class Role {
             songName.setStyle("-fx-text-fill: #F7EC74;"+"-fx-font-weight: bold;"+"-fx-font-size: 15px;");
             songDuration.setStyle("-fx-text-fill: #F7EC74;"+"-fx-font-weight: bold;"+"-fx-font-size: 15px;");
             albumLabel.setStyle("-fx-text-fill: #F7EC74;"+"-fx-font-weight: bold;"+"-fx-font-size: 15px;");
+
+            Label mesg = new Label();
+            mesg.setStyle("-fx-text-fill: #D10700;"+"-fx-font-weight: bold;"+"-fx-font-size: 15px;");
 
             upload.setOnAction(e ->
             {
@@ -161,10 +170,10 @@ public class Role {
             album.addSong(newestSong);
 
             ((Artist) user).uploadSong(title);
-            System.out.println("Genre: " + genre + " ,Duration: " + duration + " seconds" + " ,Album: "+ albumTitle);
+            mesg.setText("Song "+title+" uploded by "+user.getUsername() +" ,Genre: " + genre + " ,Duration: " + duration + " seconds" + " ,Album: "+ albumTitle);
         });
 
-        root.getChildren().addAll(songName, song, genreCombo, songDuration, Duration, albumLabel, albumField, upload);
+        root.getChildren().addAll(songName, song, genreCombo, songDuration, Duration, albumLabel, albumField, upload, mesg);
     }
 
         if (user instanceof Admin) {
@@ -186,25 +195,31 @@ public class Role {
             delete.setStyle("-fx-text-fill: #F5534B;"+"-fx-background-color: #F7EC74;"+"-fx-font-weight: bold;");
             viewUsers.setStyle("-fx-text-fill: #F5534B;"+"-fx-background-color: #F7EC74;"+"-fx-font-weight: bold;");
 
+            Label mesg = new Label();
+            mesg.setStyle("-fx-text-fill: #D10700;"+"-fx-font-weight: bold;"+"-fx-font-size: 15px;");
 
             add.setOnAction(e -> {
                 User newUser = new Listener(usernameField.getText(), "password1234",
                         usernameField.getText()+" full name","mail@gmail.com");
-                admin.addUser(users1, newUser);});
+                admin.addUser(users1, newUser);
+                mesg.setText("User " + newUser.getUsername() + " added successfully.");
+                });
 
             delete.setOnAction(e -> {
                 for (User u : users1) {
                     if (u.getUsername().equals(usernameField.getText())) {
                         admin.deleteUser(users1, u);
+                        mesg.setText("User " + u.getUsername() + " removed successfully.");
                         return;
                     }
                 }
-                System.out.println("User not found");});
+                mesg.setText("User not found.");});
 
-            viewUsers.setOnAction(e ->
-                admin.viewAllUsers(users1)
-            );
-            root.getChildren().addAll(adminLabel, usernameField, add, delete, viewUsers);
+            viewUsers.setOnAction(e ->{
+            mesg.setText(admin.viewAllUsers(users1));
+            mesg.setWrapText(true);
+            });
+            root.getChildren().addAll(adminLabel, usernameField, add, delete, viewUsers, mesg);
         }
 
         logout.setOnAction(e -> Login.show(stage));
