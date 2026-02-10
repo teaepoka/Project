@@ -53,11 +53,18 @@ public class Admin extends User {
 	        System.out.println("User " + user.getUsername() + " updated successfully.");
 	    }
 
-	    //Prints a list of all users and their roles.
-	    public void viewAllUsers(List<User> userList) {
-	        System.out.println("All users:");
-	        for(User u : userList) {
-	            System.out.println("- " + u.getFullName() + " (" + u.getClass().getSimpleName() + ")");
+	   //Prints a list of all users and their roles.
+	    public String viewAllUsers(List<User> userList) {
+	        StringBuilder sb = new StringBuilder("All users:\n");
+	        for (User u : userList) {
+	            sb.append("- ")
+	              .append(u.getFullName())
+	              .append(" (")
+	              .append(u.getClass().getSimpleName())
+	              .append(")\n");
 	        }
+	        return sb.toString();
 	    }
+	    
+}
 }
