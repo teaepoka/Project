@@ -32,8 +32,12 @@ public class Registration {
         
         register.setPrefWidth(200);
         back.setPrefWidth(200);
+        
+        Label mesg = new Label();
+        mesg.setStyle("-fx-text-fill: #D10700;"+"-fx-font-weight: bold;"+"-fx-font-size: 15px;");
 
         register.setOnAction(e -> {
+        	try {
             User user;
             switch (role.getValue()) {
                 case "Artist":
@@ -46,7 +50,12 @@ public class Registration {
                     user = new Listener(username.getText(), password.getText(), fullName.getText(), email.getText());
             }
             FileRegistration.userService.registerUser(user);
+            mesg.setText(""); 
             Login.show(stage);
+            }
+            catch (IllegalArgumentException ex) {
+                mesg.setText("Invalid email. It must end with @gmail.com");
+            }
         });
 
         back.setOnAction(e -> Login.show(stage));
@@ -63,7 +72,7 @@ public class Registration {
         pWord.setStyle("-fx-text-fill: #184966;"+"-fx-font-weight: bold;"+"-fx-font-size: 15px;");
         Role.setStyle("-fx-text-fill: #184966;"+"-fx-font-weight: bold;"+"-fx-font-size: 15px;");
 
-        VBox vroot = new VBox(10,uName, username, fName, fullName, Email, email, pWord, password, Role, role, register, back);
+        VBox vroot = new VBox(10,uName, username, fName, fullName, Email, email, pWord, password, Role, role, register, back, mesg);
         vroot.setStyle("-fx-background-color: #FCABE5");
 
         stage.setScene(new Scene(vroot, 350, 420));
