@@ -1,3 +1,12 @@
+package application;
+
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import core.*;
+
 public class Registration {
 
     public static void show(Stage stage) {
@@ -11,7 +20,7 @@ public class Registration {
         email.setStyle("-fx-background-color: #F0D6E9");
         password.setStyle("-fx-background-color: #F0D6E9");
 
-        ComboBox<String> role = new ComboBox<>(); //it lets user choose one option from list
+        ComboBox<String> role = new ComboBox<>(); 
         role.getItems().addAll("Listener", "Artist", "Admin");
         role.setStyle("-fx-background-color: #F0D6E9");
 
@@ -61,5 +70,4 @@ public class Registration {
         stage.setTitle("Register");
     }
 }
-
 
