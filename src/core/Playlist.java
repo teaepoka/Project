@@ -56,6 +56,10 @@ public class Playlist implements Serializable{
 	    public List<Song> getSongs() {
 	        return songs;
 	    }
+	 @Override
+	    public String toString() {
+	        return name;
+	    }
 	  }
 
 
