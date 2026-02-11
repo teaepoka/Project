@@ -39,14 +39,6 @@ public class Artist extends User {
 	        System.out.println("Song \"" + songName + "\" uploaded by " + fullName);
 	    }
 
-	    //Displays all songs that were uploaded by this artist
-	    public void viewUploadedSongs() {
-	        System.out.println("Songs uploaded by " + fullName + ":");
-	        for(String song : songsUploaded) {
-	            System.out.println("- " + song);
-	        }
-	    }
-
 	    //Removes a song from the artist's uploaded list if it exists.
 	    public void removeSong(String songName) {
 	        if(songsUploaded.remove(songName)) {
@@ -60,6 +52,6 @@ public class Artist extends User {
 	    public List<String> getSongsUploaded() {
 	        return songsUploaded;
 	    }
-
+	       
 		
 }
