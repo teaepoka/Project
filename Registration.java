@@ -9,7 +9,7 @@ import core.*;
 
 public class Registration {
 
-    public static void show(Stage stage) {
+    public static void show(Stage stage){
         TextField username = new TextField();
         TextField fullName = new TextField();
         TextField email = new TextField();
@@ -53,9 +53,9 @@ public class Registration {
             mesg.setText(""); 
             Login.show(stage);
             }
-            catch (IllegalArgumentException ex) {
-                mesg.setText("Invalid email. It must end with @gmail.com");
-            }
+        	catch (IllegalArgumentException ex) {
+        	    mesg.setText(ex.getMessage());
+        	}
         });
 
         back.setOnAction(e -> Login.show(stage));
