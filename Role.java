@@ -42,6 +42,7 @@ public class Role {
         	    mesg.setText(user.getUsername()+" is listening to "+name);
             } else {
                 System.out.println("Song not found");
+                mesg.setText("Song not found");
             }
     	    });
 
