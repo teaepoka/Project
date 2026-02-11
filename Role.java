@@ -140,14 +140,14 @@ public class Role {
             
 
             if(title.isEmpty() || durationStr.isEmpty()|| genre == null || albumTitle.isEmpty()) {
-                System.out.println("Please enter all song details!");
+                mesg.setText("Please enter all song details!");
                 return; }
             
             int duration;
             try {
                 duration = Integer.parseInt(durationStr);
             } catch(NumberFormatException ex) {
-                System.out.println("Duration must be a number!");
+                mesg.setText("Duration must be a number!");
                 return;
             }
 
