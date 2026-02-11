@@ -15,7 +15,7 @@ public abstract class User implements Serializable{
     // Constructor
     public User(String username, String password, String fullName, String email) {
         this.username = username;
-        this.password = password;
+        setPassword(password);
         this.fullName = fullName;
         setEmail(email);
     }
@@ -47,7 +47,12 @@ public abstract class User implements Serializable{
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        if(password==null || password.length()<8) {
+        	throw new IllegalArgumentException(
+                    "Password length must be at least 8 characters long"
+                );
+        }
+        this.password=password;
     }
 
     public String getFullName() {
