@@ -76,7 +76,6 @@ public class Main {
             System.out.print("Enter a song to upload: ");
             String song = sc.nextLine().trim();
             a.uploadSong(song);
-            a.viewUploadedSongs();
         }
 
         // View all users for Admin
